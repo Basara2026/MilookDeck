@@ -1,0 +1,355 @@
+<Window x:Class="MilookDeck.App.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="設定" Icon="MilookDeck.ico" Width="1080" Height="780" MinWidth="980" MinHeight="520"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+        FontFamily="Yu Gothic UI, Meiryo UI">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="0">
+            <TabItem Header="動作設定">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="8,10,16,4">
+                <GroupBox Header="動作" Padding="8" Margin="0,0,0,10">
+                    <CheckBox x:Name="TrayCheck" Content="タスクトレイに常駐する(閉じるボタンでタスクトレイに格納)" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                </GroupBox>
+                <GroupBox Header="ファイル" Padding="8" Margin="0,0,0,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="TVTest 実行ファイル" VerticalAlignment="Center"/>
+                        <TextBox x:Name="ExeBox" Grid.Row="0" Grid.Column="1" Margin="0,2" Padding="2" LostFocus="ExeBox_LostFocus"/>
+                        <Button Grid.Row="0" Grid.Column="2" Content="参照…" Margin="6,2,0,2" Padding="10,2" Click="BrowseExe_Click"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="起動オプション" Margin="16,0,0,0" VerticalAlignment="Center" Foreground="Gray"/>
+                        <TextBox x:Name="TvTestArgsBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,2" Padding="2" ToolTip="TVTest の起動時に追加で渡すオプション(例: /min)。本ソフトが指定する /d(BonDriver)などの後ろに付きます"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="EDCB フォルダ" VerticalAlignment="Center"/>
+                        <TextBox x:Name="EdcbBox" Grid.Row="2" Grid.Column="1" Margin="0,2" Padding="2" ToolTip="EDCB の EpgTimerSrv.exe があるフォルダ。EPG データ(Setting\EpgData)と予約(Setting\Reserve.txt)はこの中のものを使います"/>
+                        <Button Grid.Row="2" Grid.Column="2" Content="参照…" Margin="6,2,0,2" Padding="10,2" Click="BrowseEdcb_Click"/>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="ボタン1 実行ファイル" VerticalAlignment="Center"/>
+                        <TextBox x:Name="Button1Box" Grid.Row="3" Grid.Column="1" Margin="0,2" Padding="2"/>
+                        <Button Grid.Row="3" Grid.Column="2" Content="参照…" Margin="6,2,0,2" Padding="10,2" Tag="0" Click="BrowseButton_Click"/>
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="起動オプション" Margin="16,0,0,0" VerticalAlignment="Center" Foreground="Gray"/>
+                        <TextBox x:Name="Button1ArgsBox" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,2" Padding="2" ToolTip="ボタン1で起動するソフトに渡すオプション"/>
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="ボタン2 実行ファイル" VerticalAlignment="Center"/>
+                        <TextBox x:Name="Button2Box" Grid.Row="5" Grid.Column="1" Margin="0,2" Padding="2"/>
+                        <Button Grid.Row="5" Grid.Column="2" Content="参照…" Margin="6,2,0,2" Padding="10,2" Tag="1" Click="BrowseButton_Click"/>
+                        <TextBlock Grid.Row="6" Grid.Column="0" Text="起動オプション" Margin="16,0,0,0" VerticalAlignment="Center" Foreground="Gray"/>
+                        <TextBox x:Name="Button2ArgsBox" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,2" Padding="2" ToolTip="ボタン2で起動するソフトに渡すオプション"/>
+                        <TextBlock Grid.Row="7" Grid.Column="0" Text="ボタン3 実行ファイル" VerticalAlignment="Center"/>
+                        <TextBox x:Name="Button3Box" Grid.Row="7" Grid.Column="1" Margin="0,2" Padding="2"/>
+                        <Button Grid.Row="7" Grid.Column="2" Content="参照…" Margin="6,2,0,2" Padding="10,2" Tag="2" Click="BrowseButton_Click"/>
+                        <TextBlock Grid.Row="8" Grid.Column="0" Text="起動オプション" Margin="16,0,0,0" VerticalAlignment="Center" Foreground="Gray"/>
+                        <TextBox x:Name="Button3ArgsBox" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,2" Padding="2" ToolTip="ボタン3で起動するソフトに渡すオプション"/>
+                        <TextBlock Grid.Row="9" Grid.Column="0" Text="ボタン4 実行ファイル" VerticalAlignment="Center"/>
+                        <TextBox x:Name="Button4Box" Grid.Row="9" Grid.Column="1" Margin="0,2" Padding="2"/>
+                        <Button Grid.Row="9" Grid.Column="2" Content="参照…" Margin="6,2,0,2" Padding="10,2" Tag="3" Click="BrowseButton_Click"/>
+                        <TextBlock Grid.Row="10" Grid.Column="0" Text="起動オプション" Margin="16,0,0,0" VerticalAlignment="Center" Foreground="Gray"/>
+                        <TextBox x:Name="Button4ArgsBox" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,2" Padding="2" ToolTip="ボタン4で起動するソフトに渡すオプション"/>
+                        <TextBlock Grid.Row="11" Grid.Column="0" Text="ボタン5 実行ファイル" VerticalAlignment="Center"/>
+                        <TextBox x:Name="Button5Box" Grid.Row="11" Grid.Column="1" Margin="0,2" Padding="2"/>
+                        <Button Grid.Row="11" Grid.Column="2" Content="参照…" Margin="6,2,0,2" Padding="10,2" Tag="4" Click="BrowseButton_Click"/>
+                        <TextBlock Grid.Row="12" Grid.Column="0" Text="起動オプション" Margin="16,0,0,0" VerticalAlignment="Center" Foreground="Gray"/>
+                        <TextBox x:Name="Button5ArgsBox" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,2" Padding="2" ToolTip="ボタン5で起動するソフトに渡すオプション"/>
+                        <TextBlock Grid.Row="13" Grid.Column="0" Text="起動ボタンを表示する" VerticalAlignment="Center" Margin="0,4,0,0"/>
+                        <StackPanel Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,4,0,0">
+                            <CheckBox x:Name="ShowButton1Check" Content="ボタン1" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                            <CheckBox x:Name="ShowButton2Check" Content="ボタン2" Margin="16,0,0,0" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                            <CheckBox x:Name="ShowButton3Check" Content="ボタン3" Margin="16,0,0,0" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                            <CheckBox x:Name="ShowButton4Check" Content="ボタン4" Margin="16,0,0,0" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                            <CheckBox x:Name="ShowButton5Check" Content="ボタン5" Margin="16,0,0,0" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="チューナー" Padding="8" Margin="0,0,0,10">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                            <TextBlock Text="チューナー数" VerticalAlignment="Center"/>
+                            <Grid Width="96" Margin="8,0,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="26"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox x:Name="CountBox" Padding="2" HorizontalContentAlignment="Right" Tag="1|16|1"
+                                         PreviewKeyDown="CountBox_PreviewKeyDown" LostFocus="CountBox_LostFocus" KeyDown="CountBox_KeyDown"/>
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <RepeatButton Grid.Row="0" Content="▲" FontSize="8" Padding="0" MinWidth="0" MinHeight="0" Focusable="False" Click="CountUp_Click"/>
+                                    <RepeatButton Grid.Row="1" Content="▼" FontSize="8" Padding="0" MinWidth="0" MinHeight="0" Focusable="False" Click="CountDown_Click"/>
+                                </Grid>
+                            </Grid>
+                            <TextBlock Text="(1〜16。入力後に Enter か他の欄へ移動で反映)" Margin="8,0,0,0" Foreground="Gray" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <Grid Margin="0,0,0,2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="105"/>
+                                <ColumnDefinition Width="260"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="130"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="No" Foreground="Gray"/>
+                            <TextBlock Grid.Column="1" Text="表示名" Foreground="Gray"/>
+                            <TextBlock Grid.Column="2" Text="使用 BonDriver" Foreground="Gray"/>
+                            <TextBlock Grid.Column="3" Text="種別" Foreground="Gray"/>
+                        </Grid>
+                        <ItemsControl x:Name="TunerItems">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="105"/>
+                                            <ColumnDefinition Width="260"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="130"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" VerticalAlignment="Center">
+                                            <Run Text="チューナー "/><Run Text="{Binding No, Mode=OneWay}"/>
+                                        </TextBlock>
+                                        <TextBox Grid.Column="1" Margin="0,0,6,0" Padding="2"
+                                                 Text="{Binding Label, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <ComboBox Grid.Column="2" Margin="0,0,6,0" IsEditable="True"
+                                                  ItemsSource="{Binding Drivers, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                  Text="{Binding Driver, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <ComboBox Grid.Column="3" SelectedValuePath="Content"
+                                                  SelectedValue="{Binding Kind, UpdateSourceTrigger=PropertyChanged}">
+                                            <ComboBoxItem Content="地デジ"/>
+                                            <ComboBoxItem Content="BS/CS"/>
+                                        </ComboBox>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="表示設定">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="8,10,16,4">
+                <GroupBox Header="表示" Padding="8" Margin="0,0,0,10">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="270"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="テーマ" VerticalAlignment="Center"/>
+                            <ComboBox x:Name="ThemeCombo" Grid.Column="1" SelectedValuePath="Tag">
+                                <ComboBoxItem Content="Windows の設定に合わせる" Tag="System"/>
+                                <ComboBoxItem Content="ライト" Tag="Light"/>
+                                <ComboBoxItem Content="ダーク" Tag="Dark"/>
+                            </ComboBox>
+                            <ComboBox x:Name="ButtonStyleCombo" Grid.Column="2" Margin="12,0,0,0" Width="196" SelectedValuePath="Tag">
+                                <ComboBoxItem Content="縦ボタンスタイル" Tag="Vertical"/>
+                                <ComboBoxItem Content="横ボタンスタイル" Tag="Horizontal"/>
+                            </ComboBox>
+                        </Grid>
+                        <Grid Margin="0,0,0,6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="96"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="フォント" VerticalAlignment="Center"/>
+                            <ComboBox x:Name="FontCombo" Grid.Column="1" IsEditable="True"/>
+                            <TextBlock Grid.Column="2" Text="サイズ" Margin="10,0,6,0" VerticalAlignment="Center"/>
+                            <Grid Grid.Column="3" Width="96">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="26"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox x:Name="SizeBox" Padding="2" HorizontalContentAlignment="Right" Tag="6|72|1" PreviewKeyDown="Spin_KeyDown"/>
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <RepeatButton Grid.Row="0" Content="▲" FontSize="8" Padding="0" MinWidth="0" MinHeight="0" Focusable="False" Click="SizeUp_Click"/>
+                                    <RepeatButton Grid.Row="1" Content="▼" FontSize="8" Padding="0" MinWidth="0" MinHeight="0" Focusable="False" Click="SizeDown_Click"/>
+                                </Grid>
+                            </Grid>
+                            <TextBlock Grid.Column="4" Text="太さ" Margin="14,0,6,0" VerticalAlignment="Center"/>
+                            <Slider x:Name="WeightSlider" Grid.Column="5" Width="130" Minimum="100" Maximum="900"
+                                    TickFrequency="100" IsSnapToTickEnabled="True" SmallChange="100" LargeChange="100"
+                                    VerticalAlignment="Center" ToolTip="100(細い)〜400(標準)〜700(太字)〜900(極太)。フォントによっては近い太さで表示されます"/>
+                            <TextBlock Grid.Column="6" Text="{Binding Value, ElementName=WeightSlider, StringFormat=0}"
+                                       Width="34" TextAlignment="Right" Margin="6,0,0,0" VerticalAlignment="Center"/>
+                        </Grid>
+                        <Grid Margin="0,0,0,6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="96"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="チューナー欄の幅" VerticalAlignment="Center"/>
+                            <Grid Grid.Column="1" Width="96">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="26"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox x:Name="TunerWidthBox" Padding="2" HorizontalContentAlignment="Right" Tag="60|600|5" PreviewKeyDown="Spin_KeyDown"/>
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <RepeatButton Grid.Row="0" Content="▲" FontSize="8" Padding="0" MinWidth="0" MinHeight="0" Focusable="False" Click="TunerWidthUp_Click"/>
+                                    <RepeatButton Grid.Row="1" Content="▼" FontSize="8" Padding="0" MinWidth="0" MinHeight="0" Focusable="False" Click="TunerWidthDown_Click"/>
+                                </Grid>
+                            </Grid>
+                            <TextBlock Grid.Column="2" Text="(60〜600。本体の境界線をドラッグしても変更できます)" Margin="8,0,0,0" Foreground="Gray" VerticalAlignment="Center"/>
+                        </Grid>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                            <TextBlock Text="チューナー欄" Width="200" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="AlignLeftCheck" Content="左揃え" Checked="Align_Checked" Unchecked="Align_Unchecked" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                            <CheckBox x:Name="AlignCenterCheck" Content="中央揃え" Margin="16,0,0,0" Checked="Align_Checked" Unchecked="Align_Unchecked" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                            <CheckBox x:Name="AlignRightCheck" Content="右揃え" Margin="16,0,0,0" Checked="Align_Checked" Unchecked="Align_Unchecked" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                            <CheckBox x:Name="ShowDetailCheck" Content="番組内容を表示" Width="200" VerticalAlignment="Center"
+                                      FontSize="{Binding FontSize, ElementName=DetailWidthLabel}"
+                                      FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                            <StackPanel Orientation="Horizontal" IsEnabled="{Binding IsChecked, ElementName=ShowDetailCheck}">
+                                <TextBlock Text="表示するまでの時間" VerticalAlignment="Center"/>
+                                <Grid Width="96" Margin="8,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="26"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox x:Name="DetailDelayBox" Padding="2" HorizontalContentAlignment="Right" Tag="0.5|5|0.1|0.0" PreviewKeyDown="Spin_KeyDown"/>
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <RepeatButton Grid.Row="0" Content="▲" FontSize="8" Padding="0" MinWidth="0" MinHeight="0" Focusable="False" Click="DetailDelayUp_Click"/>
+                                        <RepeatButton Grid.Row="1" Content="▼" FontSize="8" Padding="0" MinWidth="0" MinHeight="0" Focusable="False" Click="DetailDelayDown_Click"/>
+                                    </Grid>
+                                </Grid>
+                                <TextBlock Text="秒" Margin="6,0,0,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="(0.5〜5.0。一覧にマウスを乗せてから表示するまでの時間)" Margin="8,0,0,0" Foreground="Gray" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <Grid Margin="0,0,0,6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="96"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="DetailWidthLabel" Grid.Column="0" Text="番組内容の幅" VerticalAlignment="Center"/>
+                            <Grid Grid.Column="1" Width="96">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="26"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox x:Name="DetailWidthBox" Padding="2" HorizontalContentAlignment="Right" Tag="200|1600|20" PreviewKeyDown="Spin_KeyDown"/>
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <RepeatButton Grid.Row="0" Content="▲" FontSize="8" Padding="0" MinWidth="0" MinHeight="0" Focusable="False" Click="DetailWidthUp_Click"/>
+                                    <RepeatButton Grid.Row="1" Content="▼" FontSize="8" Padding="0" MinWidth="0" MinHeight="0" Focusable="False" Click="DetailWidthDown_Click"/>
+                                </Grid>
+                            </Grid>
+                            <TextBlock Grid.Column="2" Text="(200〜1600。一覧にマウスを乗せたときの番組内容の幅)" Margin="8,0,0,0" Foreground="Gray" VerticalAlignment="Center"/>
+                        </Grid>
+                        <Grid x:Name="ColorGrid"/>   <!-- 色設定1〜3の表(中身はコードで作る) -->
+                        <TextBlock Margin="0,6,0,0" Foreground="Gray" TextWrapping="Wrap"
+                                   Text="色は #AARRGGBB(透明度+RGB)または #RRGGBB で指定します。AA が小さいほど透けます。「選択…」では透明度は変わりません。"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="局名(表示・非表示と表示名)" Padding="8" Margin="0,0,0,10">
+                    <StackPanel>
+                        <TextBlock Foreground="Gray" TextWrapping="Wrap" Margin="0,0,0,6"
+                                   Text="「表示」のチェックを外すと本体の一覧に出ません。「表示名」は本体の表示だけが変わります(内部の局名は変わりません)。空にすると元の名前に戻ります。"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                            <Button Content="すべて表示" Padding="10,2" Click="ShowAllStations_Click"/>
+                            <Button Content="表示名をすべて元に戻す" Padding="10,2" Margin="8,0,0,0" Click="ResetNames_Click"/>
+                        </StackPanel>
+                        <Grid Margin="0,0,17,2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="56"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="表示" Foreground="Gray" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="種別" Foreground="Gray"/>
+                            <TextBlock Grid.Column="2" Text="元の局名" Foreground="Gray"/>
+                            <TextBlock Grid.Column="3" Text="表示名" Foreground="Gray"/>
+                        </Grid>
+                        <Border BorderBrush="#55808080" BorderThickness="1">
+                            <ScrollViewer Height="300" VerticalScrollBarVisibility="Auto">
+                                <ItemsControl x:Name="StationItems">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderBrush="#33808080" BorderThickness="0,0,0,1" Padding="0,2">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="56"/>
+                                                        <ColumnDefinition Width="80"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <CheckBox Grid.Column="0" IsChecked="{Binding Visible, UpdateSourceTrigger=PropertyChanged}"
+                                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding Kind}" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="2" Text="{Binding OriginalName}" VerticalAlignment="Center"
+                                                               TextTrimming="CharacterEllipsis" Margin="0,0,8,0"/>
+                                                    <TextBox Grid.Column="3" Padding="2" Margin="0,0,4,0"
+                                                             Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </Border>
+                    </StackPanel>
+                </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+            <Button Content="OK" Width="90" Padding="0,4" IsDefault="True" Click="Ok_Click"/>
+            <Button Content="キャンセル" Width="90" Padding="0,4" Margin="8,0,0,0" IsCancel="True"/>
+            <Button Content="適用" Width="90" Padding="0,4" Margin="8,0,0,0" Click="Apply_Click"/>
+        </StackPanel>
+        <TextBlock x:Name="VersionText" Grid.Row="2" HorizontalAlignment="Right" Margin="0,8,0,0" Foreground="Gray"/>
+    </Grid>
+</Window>

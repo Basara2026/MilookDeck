@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <Platforms>AnyCPU;x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <RollForward>LatestMajor</RollForward>      <!-- .NET 9 ランタイムが無くても、より新しい .NET で実行 -->
+    <NoWarn>$(NoWarn);WPF0001</NoWarn>          <!-- ThemeMode(Fluent テーマ)は実験的 API -->
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>   <!-- タスクトレイ(NotifyIcon)・色選択ダイアログ用 -->
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>MilookDeck.App</RootNamespace>
+    <AssemblyName>MilookDeck</AssemblyName>
+    <ApplicationIcon>MilookDeck.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- WPF と WinForms の型名の衝突を避ける -->
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MilookDeck.ico" />
+    <Resource Include="BtnFrame.png" />
+    <Resource Include="TitleVertical.png" />
+    <Resource Include="TitleHorizontal.png" />
+    <ProjectReference Include="..\Core\Core.csproj" />
+  </ItemGroup>
+</Project>

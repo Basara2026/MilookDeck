@@ -1,0 +1,20 @@
+<Window x:Class="MilookDeck.App.SleepConfirmWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="スリープ" Icon="MilookDeck.ico" Width="400" SizeToContent="Height"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True"
+        FontFamily="Yu Gothic UI, Meiryo UI">
+    <StackPanel Margin="20,18,20,16">
+        <!-- 文字の大きさ・太さは「すぐにスリープ」ボタンに合わせる -->
+        <TextBlock Text="PCをスリープします" TextAlignment="Center"
+                   FontSize="{Binding FontSize, ElementName=SleepNowButton}" FontWeight="{Binding FontWeight, ElementName=SleepNowButton}"/>
+        <TextBlock x:Name="CountText" Margin="0,10,0,8" TextAlignment="Center"
+                   FontSize="{Binding FontSize, ElementName=SleepNowButton}" FontWeight="{Binding FontWeight, ElementName=SleepNowButton}"/>
+        <!-- 残り時間に応じて、右端から短くなるバー -->
+        <ProgressBar x:Name="CountBar" Height="14" Minimum="0"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,18,0,0">
+            <Button x:Name="SleepNowButton" Content="すぐにスリープ" MinWidth="120" Padding="10,5" Click="SleepNow_Click"/>
+            <Button Content="キャンセル" MinWidth="90" Padding="10,5" Margin="10,0,0,0" IsCancel="True" Click="Cancel_Click"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
