@@ -1,0 +1,28 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userprefs
+
+# ビルド成果物(.NET / C++ 共通)
+[Bb]in/
+[Oo]bj/
+x64/
+x86/
+[Dd]ebug/
+[Rr]elease/
+
+# Visual C++ の中間ファイル
+*.aps
+*.ipch
+ipch/
+*.VC.db
+*.VC.opendb
+*.pdb
+*.ilk
+*.obj
+*.log
+
+# 実行時に作られる設定ファイル(利用者ごとの内容)
+MilookDeck.settings.json
+MilookDeck.state.json
