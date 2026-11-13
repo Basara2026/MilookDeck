@@ -62,7 +62,7 @@ public class Settings
     public string Theme { get; set; } = "System";   // System(Windows に合わせる) / Light / Dark
     public string FontFamily { get; set; } = "Yu Gothic UI";
     public double FontSize { get; set; } = 16;
-    public int FontWeight { get; set; } = 700;   // フォントの太さ(100=細い〜400=標準〜700=太字〜900=極太)
+    public int FontWeight { get; set; } = 400;   // フォントの太さ(100=細い〜400=標準〜700=太字〜900=極太)
     public double DetailWidth { get; set; } = 720;       // 番組内容(ホバー表示)の幅
     public string TunerAlign { get; set; } = "Left";     // チューナー欄の文字の位置(Left / Center / Right)
     public bool ShowDetail { get; set; } = true;         // 番組内容(ホバー表示)を表示する
