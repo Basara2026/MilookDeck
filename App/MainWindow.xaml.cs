@@ -130,18 +130,25 @@ public partial class MainWindow : Window
         };
     }
 
-    /// <summary>ボタンのスタイル切替。縦=左にタイトル画像(縦書き)・右にボタン1/2を縦並び、横=上部にタイトル画像とボタンを横並び。</summary>
+    /// <summary>
+    /// ボタンのレイアウト切替。
+    /// 縦=左にタイトル画像(縦書き)・右にボタンを縦並び、横=上部にタイトル画像とボタンを横並び、
+    /// ミックス=上部にタイトル画像(横書き)・右にボタンを縦並び。
+    /// </summary>
     void ApplyLayout()
     {
-        bool v = cfg.ButtonStyle != "Horizontal";
-        LeftCol.Width = new GridLength(v ? 58 : 0);
+        bool mix = cfg.ButtonStyle == "Mix";
+        bool horizontal = cfg.ButtonStyle == "Horizontal";
+        bool v = !horizontal;               // ボタンを右に縦並びにする(縦・ミックス)
+        bool titleLeft = !horizontal && !mix;   // タイトル画像を左の帯に縦書きで置く(縦のみ)
+        LeftCol.Width = new GridLength(titleLeft ? 58 : mix ? 12 : 0);
         RightCol.Width = new GridLength(v ? 56 : 0);
-        DragLeft.Visibility = v ? Visibility.Visible : Visibility.Collapsed;
+        DragLeft.Visibility = titleLeft ? Visibility.Visible : Visibility.Collapsed;
 
         // ソフト名(画像)
         Grid.SetRow(TitleImage, 0);
         Grid.SetColumn(TitleImage, 0);
-        if (v)
+        if (titleLeft)
         {
             Grid.SetRowSpan(TitleImage, 2);
             Grid.SetColumnSpan(TitleImage, 1);
