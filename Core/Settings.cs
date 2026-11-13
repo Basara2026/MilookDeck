@@ -58,7 +58,7 @@ public class Settings
     public List<TunerDef> Tuners { get; set; } = TunerDef.Defaults();
     public Dictionary<string, string> StationNames { get; set; } = new();   // 局キー(nid:tsid:sid) → 表示上の局名(内部の局名は変わらない)
 
-    public string ButtonStyle { get; set; } = "Vertical";   // Vertical(縦ボタンスタイル) / Horizontal(横ボタンスタイル)
+    public string ButtonStyle { get; set; } = "Vertical";   // Vertical(縦ボタンレイアウト) / Horizontal(横ボタンレイアウト) / Mix(ミックスレイアウト)
     public string Theme { get; set; } = "System";   // System(Windows に合わせる) / Light / Dark
     public string FontFamily { get; set; } = "Yu Gothic UI";
     public double FontSize { get; set; } = 16;
