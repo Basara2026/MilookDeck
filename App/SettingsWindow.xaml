@@ -168,8 +168,9 @@
                                 <ComboBoxItem Content="ダーク" Tag="Dark"/>
                             </ComboBox>
                             <ComboBox x:Name="ButtonStyleCombo" Grid.Column="2" Margin="12,0,0,0" Width="196" SelectedValuePath="Tag">
-                                <ComboBoxItem Content="縦ボタンスタイル" Tag="Vertical"/>
-                                <ComboBoxItem Content="横ボタンスタイル" Tag="Horizontal"/>
+                                <ComboBoxItem Content="縦ボタンレイアウト" Tag="Vertical"/>
+                                <ComboBoxItem Content="横ボタンレイアウト" Tag="Horizontal"/>
+                                <ComboBoxItem Content="ミックスレイアウト" Tag="Mix"/>
                             </ComboBox>
                         </Grid>
                         <Grid Margin="0,0,0,6">
