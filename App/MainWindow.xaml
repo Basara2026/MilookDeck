@@ -123,7 +123,7 @@
             <RowDefinition Height="26"/>
         </Grid.RowDefinitions>
 
-        <!-- ドラッグで移動 / 右クリックで「設定」(上部と、縦ボタンスタイルの左側のタイトル帯) -->
+        <!-- ドラッグで移動 / 右クリックで「設定」(上部と、縦ボタンレイアウトの左側のタイトル帯) -->
         <Border x:Name="DragTop" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="Transparent"
                 MouseLeftButtonDown="TitleBar_Drag">
             <Border.ContextMenu>
@@ -141,12 +141,12 @@
             </Border.ContextMenu>
         </Border>
 
-        <!-- ソフト名(画像)。縦ボタンスタイルでは縦書きの画像、横ボタンスタイルでは横書きの画像。配置は ApplyLayout で切り替え -->
+        <!-- ソフト名(画像)。縦ボタンレイアウトでは縦書きの画像、横ボタンレイアウトでは横書きの画像。配置は ApplyLayout で切り替え -->
         <Image x:Name="TitleImage" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Source="TitleHorizontal.png"
                Width="190" Height="27" Stretch="Fill" RenderOptions.BitmapScalingMode="HighQuality"
                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="17,9,0,0" IsHitTestVisible="False"/>
 
-        <!-- 起動ボタン(ボタン1〜5)。横ボタンスタイル=上部に右からボタン1,2…と横並び / 縦ボタンスタイル=右側に上からボタン1,2…と縦並び -->
+        <!-- 起動ボタン(ボタン1〜5)。横ボタンレイアウト=上部に右からボタン1,2…と横並び / 縦ボタンレイアウト=右側に上からボタン1,2…と縦並び -->
         <StackPanel x:Name="AppBtns" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal"
                     HorizontalAlignment="Right" Margin="0,0,72,0">
             <Button x:Name="AppBtn1" Style="{StaticResource FrameBtn}" Width="44" Height="38" Margin="0,0,6,0" Tag="0" Click="AppBtn_Click"/>
