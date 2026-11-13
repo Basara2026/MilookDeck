@@ -27,6 +27,6 @@ public class TunerDef
     [JsonIgnore] public bool Satellite => Kind == KindSatellite;
     [JsonIgnore] public int No { get; set; }               // 設定画面の表示用
 
-    /// <summary>初期状態: 空欄のチューナーが1つ。</summary>
-    public static List<TunerDef> Defaults() => new() { new TunerDef() };
+    /// <summary>初期状態: チューナーが1つ(表示名は「チューナー 1」、BonDriver は空欄)。</summary>
+    public static List<TunerDef> Defaults() => new() { new TunerDef { Label = "チューナー 1" } };
 }
