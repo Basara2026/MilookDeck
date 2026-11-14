@@ -13,7 +13,7 @@ Milookは Miru(見る／観る)とLookを組み合わせた造語です。
 - EDCB の録画予定と連携(録画中・録画予定のチューナーでは TVTest を起動しない / 視聴中なら自動で終了)
 - タスクトレイ常駐、ダーク/ライトテーマ、色・フォント・配置のカスタマイズ
 
-<table>
+<table style="border: none;">
   <tr>
     <td align="center"><img src="docs/images/layout-vertical-black.png" width="430" alt="縦ボタンレイアウト(Black)"><br>縦ボタンレイアウト(背景画像：Black)</td>
     <td align="center"><img src="docs/images/layout-vertical-red.png" width="430" alt="縦ボタンレイアウト(Red)"><br>縦ボタンレイアウト(背景画像：Red)</td>
