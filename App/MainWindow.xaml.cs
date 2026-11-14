@@ -119,6 +119,29 @@ public partial class MainWindow : Window
         catch { return new SolidColorBrush((Color)ColorConverter.ConvertFromString(fallback)); }
     }
 
+    /// <summary>本体の背景。画像を使う設定でファイルが読めるときは、ウィンドウの大きさに合わせて拡大・縮小した画像。そうでなければ「ソフト本体の色」。</summary>
+    Brush WindowBackground()
+    {
+        if (cfg.UseBackImage && !string.IsNullOrWhiteSpace(cfg.BackImagePath))
+        {
+            try
+            {
+                var bmp = new BitmapImage();
+                bmp.BeginInit();
+                bmp.CacheOption = BitmapCacheOption.OnLoad;                    // 読み込んだらファイルを手放す(画像を差し替えられるように)
+                bmp.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+                bmp.UriSource = new Uri(Path.GetFullPath(cfg.BackImagePath.Trim()));
+                bmp.EndInit();
+                bmp.Freeze();
+                var brush = new ImageBrush(bmp) { Stretch = Stretch.Fill };    // ウィンドウいっぱいに拡大・縮小
+                brush.Freeze();
+                return brush;
+            }
+            catch { /* 読めないときは色にする */ }
+        }
+        return Br(cfg.Colors.WindowColor, "#FF3B3B3B");
+    }
+
     static void ApplyTheme(string theme)
     {
         // Fluent テーマ(.NET 9)。System=Windows のライト/ダーク設定に追従
@@ -227,7 +250,7 @@ public partial class MainWindow : Window
     {
         ApplyLayout();
         ApplyTheme(cfg.Theme);   // Fluent テーマ(Windows に合わせる/ライト/ダーク)
-        Resources["WindowBrush"] = Br(cfg.Colors.WindowColor, "#FF3B3B3B");
+        Resources["WindowBrush"] = WindowBackground();   // ソフト本体の色(画像を使う設定のときは画像)
         Resources["TextBrush"] = Br(cfg.Colors.TextColor, "#FF00AAAA");
         Resources["ListBackBrush"] = Br(cfg.Colors.ListBackColor, "#FF000000");
         Resources["HoverBrush"] = Br(cfg.Colors.HoverColor, "#3BAAAAAA");
