@@ -290,6 +290,23 @@
                         <Grid x:Name="ColorGrid"/>   <!-- 色設定1〜3の表(中身はコードで作る) -->
                         <TextBlock Margin="0,6,0,0" Foreground="Gray" TextWrapping="Wrap"
                                    Text="色は #AARRGGBB(透明度+RGB)または #RRGGBB で指定します。AA が小さいほど透けます。「選択…」では透明度は変わりません。"/>
+                        <!-- ソフト本体の色の代わりに使う画像 -->
+                        <Grid Margin="0,12,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox x:Name="BackImageCheck" Content="ソフト本体の色を画像に置き換える" VerticalAlignment="Center"
+                                      FontSize="{Binding FontSize, ElementName=DetailWidthLabel}"
+                                      FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                            <TextBox x:Name="BackImageBox" Grid.Column="1" Margin="12,0,8,0" Padding="2" VerticalContentAlignment="Center"
+                                     IsEnabled="{Binding IsChecked, ElementName=BackImageCheck}"/>
+                            <Button Grid.Column="2" Content="参照..." Padding="12,3" Click="BrowseBackImage_Click"
+                                    IsEnabled="{Binding IsChecked, ElementName=BackImageCheck}"/>
+                        </Grid>
+                        <TextBlock Margin="0,4,0,0" Foreground="Gray" TextWrapping="Wrap"
+                                   Text="画像はウィンドウの大きさに合わせて拡大・縮小します(縦横比は保たれません)。png / jpg / bmp / gif などが使えます。"/>
                     </StackPanel>
                 </GroupBox>
                 <GroupBox Header="局名(表示・非表示と表示名)" Padding="8" Margin="0,0,0,10">
