@@ -123,6 +123,8 @@ public partial class SettingsWindow : Window
         (s.TunerAlign == "Center" ? AlignCenterCheck : s.TunerAlign == "Right" ? AlignRightCheck : AlignLeftCheck).IsChecked = true;
         ShowDetailCheck.IsChecked = s.ShowDetail;
         DetailDelayBox.Text = s.DetailDelay.ToString("0.0", CultureInfo.InvariantCulture);
+        BackImageCheck.IsChecked = s.UseBackImage;
+        BackImageBox.Text = s.BackImagePath;
 
         BuildColorGrid(s);
 
@@ -192,6 +194,17 @@ public partial class SettingsWindow : Window
             FileName = ExeBox.Text
         };
         if (dlg.ShowDialog(this) == true) { ExeBox.Text = dlg.FileName; RefreshDrivers(); }
+    }
+
+    void BrowseBackImage_Click(object sender, RoutedEventArgs e)
+    {
+        var dlg = new OpenFileDialog
+        {
+            Title = "背景画像",
+            Filter = "画像ファイル (*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.tif;*.tiff)|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.tif;*.tiff|すべてのファイル (*.*)|*.*",
+            FileName = BackImageBox.Text
+        };
+        if (dlg.ShowDialog(this) == true) BackImageBox.Text = dlg.FileName;
     }
 
     void BrowseEdcb_Click(object sender, RoutedEventArgs e)
@@ -479,6 +492,23 @@ public partial class SettingsWindow : Window
         { MessageBox.Show(this, "チューナー欄の幅は 60〜600 の数値で指定してください。", "設定"); return false; }
         if (!double.TryParse(DetailWidthBox.Text.Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out var detailWidth) || detailWidth < 200 || detailWidth > 1600)
         { MessageBox.Show(this, "番組内容の幅は 200〜1600 の数値で指定してください。", "設定"); return false; }
+        bool useBackImage = BackImageCheck.IsChecked == true;
+        string backImagePath = BackImageBox.Text.Trim();
+        if (useBackImage)
+        {
+            if (backImagePath.Length == 0 || !File.Exists(backImagePath))
+            { MessageBox.Show(this, "背景画像のファイルが見つかりません。画像ファイルを指定してください。", "設定"); return false; }
+            try
+            {
+                var test = new System.Windows.Media.Imaging.BitmapImage();
+                test.BeginInit();
+                test.CacheOption = System.Windows.Media.Imaging.BitmapCacheOption.OnLoad;
+                test.UriSource = new Uri(Path.GetFullPath(backImagePath));
+                test.EndInit();
+            }
+            catch
+            { MessageBox.Show(this, "背景画像を読み込めません。画像ファイル(png / jpg / bmp / gif など)を指定してください。", "設定"); return false; }
+        }
         if (!double.TryParse(DetailDelayBox.Text.Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out var detailDelay) || detailDelay < 0.5 || detailDelay > 5.0)
         { MessageBox.Show(this, "番組内容を表示するまでの時間は 0.5〜5.0(秒)の数値で指定してください。", "設定"); return false; }
         for (int k = 0; k < 3; k++)
@@ -525,6 +555,8 @@ public partial class SettingsWindow : Window
         Result.ActiveColorSet = Math.Max(0, Array.FindIndex(activeChecks, x => x.IsChecked == true));
         Result.DetailWidth = detailWidth;
         Result.TunerAlign = AlignCenterCheck.IsChecked == true ? "Center" : AlignRightCheck.IsChecked == true ? "Right" : "Left";
+        Result.UseBackImage = useBackImage;
+        Result.BackImagePath = backImagePath;
         Result.ShowDetail = ShowDetailCheck.IsChecked == true;
         Result.DetailDelay = Math.Round(detailDelay, 1);
 
