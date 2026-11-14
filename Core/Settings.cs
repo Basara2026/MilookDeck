@@ -64,6 +64,8 @@ public class Settings
     public double FontSize { get; set; } = 16;
     public int FontWeight { get; set; } = 400;   // フォントの太さ(100=細い〜400=標準〜700=太字〜900=極太)
     public double DetailWidth { get; set; } = 720;       // 番組内容(ホバー表示)の幅
+    public bool UseBackImage { get; set; } = false;      // 「ソフト本体の色」の代わりに画像を使う
+    public string BackImagePath { get; set; } = "";      // 背景画像のファイル(PC 内のパス)
     public string TunerAlign { get; set; } = "Left";     // チューナー欄の文字の位置(Left / Center / Right)
     public bool ShowDetail { get; set; } = true;         // 番組内容(ホバー表示)を表示する
     public double DetailDelay { get; set; } = 1.0;       // 番組内容を表示するまでの時間(秒。0.5〜5.0、0.1刻み)
