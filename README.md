@@ -15,15 +15,15 @@ Milookは Miru(見る／観る)とLookを組み合わせた造語です。
 
 <table>
   <tr>
-    <td align="center"><img src="docs/images/layout-vertical-black.png" width="430" alt="縦ボタンレイアウト(ブラック)"><br>縦ボタンレイアウト(背景画像: ブラック)</td>
-    <td align="center"><img src="docs/images/layout-vertical-red.png" width="430" alt="縦ボタンレイアウト(レッド)"><br>縦ボタンレイアウト(背景画像: レッド)</td>
+    <td align="center"><img src="docs/images/layout-vertical-black.png" width="430" alt="縦ボタンレイアウト(Black)"><br>縦ボタンレイアウト(背景画像：Black)</td>
+    <td align="center"><img src="docs/images/layout-vertical-red.png" width="430" alt="縦ボタンレイアウト(Red)"><br>縦ボタンレイアウト(背景画像：Red)</td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/images/layout-horizontal-green.png" width="430" alt="横ボタンレイアウト(グリーン)"><br>横ボタンレイアウト(背景画像: グリーン)</td>
-    <td align="center"><img src="docs/images/layout-mix-blue.png" width="430" alt="ミックスレイアウト(ブルー)"><br>ミックスレイアウト(背景画像: ブルー)</td>
+    <td align="center"><img src="docs/images/layout-horizontal-green.png" width="430" alt="横ボタンレイアウト(Green)"><br>横ボタンレイアウト(背景画像：Green)</td>
+    <td align="center"><img src="docs/images/layout-mix-blue.png" width="430" alt="ミックスレイアウト(Blue)"><br>ミックスレイアウト(背景画像：Blue)</td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/images/layout-vertical-gold.png" width="430" alt="縦ボタンレイアウト(ゴールド)"><br>縦ボタンレイアウト(背景画像: ゴールド)</td>
+    <td align="center"><img src="docs/images/layout-vertical-gold.png" width="430" alt="縦ボタンレイアウト(Gold)"><br>縦ボタンレイアウト(背景画像：Gold)</td>
     <td></td>
   </tr>
 </table>
