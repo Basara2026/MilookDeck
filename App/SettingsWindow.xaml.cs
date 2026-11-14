@@ -144,9 +144,12 @@ public partial class SettingsWindow : Window
 
     void BuildFontList()
     {
+        // WPF の一覧が日本語名を返さないフォント(バリアブルフォントなど)は、フォントのファイルから読み取った日本語名で補う
+        var jaFromFile = FontNames.JapaneseFamilyNames();
         foreach (var f in Fonts.SystemFontFamilies)
         {
             var display = LocalName(f);
+            if (string.Equals(display, f.Source, StringComparison.Ordinal) && jaFromFile.TryGetValue(f.Source, out var ja)) display = ja;
             fontMap[display] = f.Source;
             fontReverse[display] = display;
             fontReverse[f.Source] = display;
