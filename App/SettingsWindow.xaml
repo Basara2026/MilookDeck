@@ -289,7 +289,7 @@
                         </Grid>
                         <Grid x:Name="ColorGrid"/>   <!-- 色設定1〜3の表(中身はコードで作る) -->
                         <TextBlock Margin="0,6,0,0" Foreground="Gray" TextWrapping="Wrap"
-                                   Text="色は #AARRGGBB(透明度+RGB)または #RRGGBB で指定します。AA が小さいほど透けます。「選択…」では透明度は変わりません。"/>
+                                   Text="色は #AARRGGBB(透明度+RGB)または #RRGGBB で指定します。AA が小さいほど透けます。「選択…」の画面でも、透明度を変えられます。"/>
                         <!-- ソフト本体の色の代わりに使う画像 -->
                         <Grid Margin="0,12,0,0">
                             <Grid.ColumnDefinitions>
