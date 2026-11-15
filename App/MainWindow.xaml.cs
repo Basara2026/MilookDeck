@@ -52,6 +52,7 @@ public partial class MainWindow : Window
     DateTime scheduleExitedAt = DateTime.MinValue;   // 番組一覧から戻った時刻(直後のダブルクリックによる誤切替を防ぐ)
     bool messageShown;           // メッセージ表示中(5秒間)か
     string statusMessage = "";   // 5秒間表示するメッセージ
+    NoticeOverlay? overlay;      // 全画面の TVTest の上に出す、カウントダウンの重ね表示
     string? countdownText;       // EDCB の録画予定による視聴終了のカウントダウン(表示中のみ)
     EdcbSnapshot edcbSnap = EdcbSnapshot.Empty;
     DateTime edcbFetched = DateTime.MinValue;
@@ -339,6 +340,7 @@ public partial class MainWindow : Window
     void ExitApp()
     {
         exiting = true;
+        overlay?.Close();
         Close();
     }
 
@@ -538,6 +540,7 @@ public partial class MainWindow : Window
         if (running.Count == 0)
         {
             if (countdownText != null) { countdownText = null; UpdateProgramInfo(); }
+            overlay?.HideNotice();
             return;
         }
         if (!edcbFetching && (DateTime.Now - edcbFetched).TotalSeconds >= 10) await FetchEdcbAsync();
@@ -574,7 +577,25 @@ public partial class MainWindow : Window
             var prefix = counting.Count > 1 ? $"{first.t.Def.Label}: " : "";   // 複数のチューナーが対象のときは、最も早いものを表示
             text = $"{prefix}EDCBにて録画予定のため {first.sec} 秒後に視聴を終了します";
         }
+        UpdateFullscreenNotice(counting);
         if (text != countdownText) { countdownText = text; UpdateProgramInfo(); }
+    }
+
+    /// <summary>
+    /// カウントダウン中のチューナーの TVTest が全画面なら、その画面の上の中央に、同じ文面を重ねて表示する。
+    /// 全画面でなければ(ウィンドウ表示なら)、これまでどおり本体の表示だけ。
+    /// </summary>
+    void UpdateFullscreenNotice(List<(TunerController t, int sec)> counting)
+    {
+        foreach (var (t, sec) in counting.OrderBy(x => x.sec))
+        {
+            if (t.Proc == null || !FullscreenProbe.TryGetMonitor(t.Proc.Id, out var monitor)) continue;
+            var prefix = counting.Count > 1 ? $"{t.Def.Label}: " : "";
+            overlay ??= new NoticeOverlay(StationList.FontFamily, FontWeights.Bold);
+            overlay.ShowNotice($"{prefix}EDCBにて録画予定のため {sec} 秒後に視聴を終了します", monitor);
+            return;
+        }
+        overlay?.HideNotice();
     }
 
     // ---------- 操作 ----------
