@@ -397,12 +397,11 @@ public partial class SettingsWindow : Window
     void ColorPick_Click(object sender, RoutedEventArgs e)
     {
         if (sender is not Button b || b.Tag is not ColorEdit ce) return;
-        ColorEdit.TryParse(ce.Hex, out var cur);
-        using var dlg = new WF.ColorDialog { FullOpen = true, Color = SD.Color.FromArgb(cur.R, cur.G, cur.B) };
-        if (dlg.ShowDialog() != WF.DialogResult.OK) return;
-        var c = dlg.Color;
-        byte a = ColorEdit.TryParse(ce.Hex, out _) ? cur.A : (byte)255;   // 透明度は今の値を維持
-        ce.Hex = $"#{a:X2}{c.R:X2}{c.G:X2}{c.B:X2}";
+        bool valid = ColorEdit.TryParse(ce.Hex, out var cur);
+        var dlg = new ColorPickerWindow(valid ? cur : Color.FromArgb(255, 0, 0, 0), this);   // 透明度も選べる WPF 版の色選択
+        if (dlg.ShowDialog() != true) return;
+        var c = dlg.SelectedColor;
+        ce.Hex = $"#{c.A:X2}{c.R:X2}{c.G:X2}{c.B:X2}";
     }
 
     /// <summary>色設定1の6つの色を既定値に戻す(色設定2・3は変えない)。</summary>
