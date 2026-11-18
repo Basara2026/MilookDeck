@@ -16,7 +16,10 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="8,10,16,4">
                 <GroupBox Header="動作" Padding="8" Margin="0,0,0,10">
-                    <CheckBox x:Name="TrayCheck" Content="タスクトレイに常駐する(閉じるボタンでタスクトレイに格納)" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox x:Name="TrayCheck" Content="タスクトレイに常駐する(閉じるボタンでタスクトレイに格納)" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                        <CheckBox x:Name="StartupCheck" Content="スタートアップに登録する" Margin="32,0,0,0" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                    </StackPanel>
                 </GroupBox>
                 <GroupBox Header="ファイル" Padding="8" Margin="0,0,0,10">
                     <Grid>
