@@ -98,6 +98,7 @@ public partial class SettingsWindow : Window
         if (ButtonStyleCombo.SelectedValue == null) ButtonStyleCombo.SelectedValue = "Vertical";
 
         TrayCheck.IsChecked = s.TrayResident;
+        StartupCheck.IsChecked = StartupRegistration.IsRegistered();   // 登録の有無は、レジストリの状態を表示する
         ExeBox.Text = s.TvTestExe;
         EdcbBox.Text = s.EdcbDir;
         TvTestArgsBox.Text = s.TvTestArgs;
@@ -526,6 +527,7 @@ public partial class SettingsWindow : Window
             if (string.IsNullOrWhiteSpace(t.Label)) t.Label = $"チューナー {t.No}";
 
         Result.TrayResident = TrayCheck.IsChecked == true;
+        Result.RunAtStartup = StartupCheck.IsChecked == true;
         Result.TvTestExe = ExeBox.Text.Trim();
         Result.EdcbDir = EdcbBox.Text.Trim();
         Result.TvTestArgs = TvTestArgsBox.Text.Trim();
