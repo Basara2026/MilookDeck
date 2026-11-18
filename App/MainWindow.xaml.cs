@@ -371,6 +371,7 @@ public partial class MainWindow : Window
     {
         cfg = s;
         cfg.Save(baseDir);
+        StartupRegistration.Set(s.RunAtStartup);   // スタートアップへの登録/解除(「OK」「適用」で反映)
         state.Save(statePath);   // 非表示の局
         ApplyAppearance();
         BuildTuners();
