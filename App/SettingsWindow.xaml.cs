@@ -98,7 +98,7 @@ public partial class SettingsWindow : Window
         if (ButtonStyleCombo.SelectedValue == null) ButtonStyleCombo.SelectedValue = "Vertical";
 
         TrayCheck.IsChecked = s.TrayResident;
-        StartupCheck.IsChecked = StartupRegistration.IsRegistered();   // 登録の有無は、レジストリの状態を表示する
+        StartupCheck.IsChecked = StartupRegistration.IsRegistered();   // 登録の有無は、スタートアップフォルダのショートカットの状態を表示する
         ExeBox.Text = s.TvTestExe;
         EdcbBox.Text = s.EdcbDir;
         TvTestArgsBox.Text = s.TvTestArgs;
