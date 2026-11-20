@@ -200,6 +200,19 @@ public partial class SettingsWindow : Window
         if (dlg.ShowDialog(this) == true) { ExeBox.Text = dlg.FileName; RefreshDrivers(); }
     }
 
+    /// <summary>局名の表の高さを、8行ぶん(局が8未満ならその数)が見える高さにする。文字の大きさで行の高さが変わっても、見える行数は変わらない。</summary>
+    void StationScroll_Loaded(object sender, RoutedEventArgs e) => QueueFitStationRows();
+    void StationScroll_VisibleChanged(object sender, DependencyPropertyChangedEventArgs e) => QueueFitStationRows();
+    void QueueFitStationRows() => Dispatcher.BeginInvoke(new Action(FitStationRows), System.Windows.Threading.DispatcherPriority.Loaded);
+
+    void FitStationRows()
+    {
+        if (stationEdits.Count == 0) return;
+        if (StationItems.ItemContainerGenerator.ContainerFromIndex(0) is not FrameworkElement row || row.ActualHeight <= 0) return;
+        double h = row.ActualHeight * Math.Min(8, stationEdits.Count) + 2;
+        if (Math.Abs(StationScroll.Height - h) > 0.5) StationScroll.Height = h;
+    }
+
     void BrowseBackImage_Click(object sender, RoutedEventArgs e)
     {
         var dlg = new OpenFileDialog
