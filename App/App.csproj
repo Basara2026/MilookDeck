@@ -3,8 +3,8 @@
     <OutputType>WinExe</OutputType>
     <Platforms>AnyCPU;x64</Platforms>
     <PlatformTarget>x64</PlatformTarget>
-    <TargetFramework>net9.0-windows</TargetFramework>
-    <RollForward>LatestMajor</RollForward>      <!-- .NET 9 ランタイムが無くても、より新しい .NET で実行 -->
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <RollForward>LatestMajor</RollForward>      <!-- .NET 10 ランタイムが無くても、より新しい .NET で実行 -->
     <NoWarn>$(NoWarn);WPF0001</NoWarn>          <!-- ThemeMode(Fluent テーマ)は実験的 API -->
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>   <!-- タスクトレイ(NotifyIcon)・色選択ダイアログ用 -->
