@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="設定" Icon="MilookDeck.ico" Width="1080" Height="780" MinWidth="980" MinHeight="520"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        FontFamily="Yu Gothic UI, Meiryo UI">
+        FontFamily="{DynamicResource {x:Static SystemFonts.MessageFontFamilyKey}}">
     <Grid Margin="12">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -161,16 +161,17 @@
                         <Grid Margin="0,0,0,6">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="270"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="テーマ" VerticalAlignment="Center"/>
-                            <ComboBox x:Name="ThemeCombo" Grid.Column="1" SelectedValuePath="Tag">
+                            <!-- 幅は、選択肢の最も長い文字に合わせて自動で広がる(文字の大きさが変わっても欠けない) -->
+                            <ComboBox x:Name="ThemeCombo" Grid.Column="1" MinWidth="270" SelectedValuePath="Tag">
                                 <ComboBoxItem Content="Windows の設定に合わせる" Tag="System"/>
                                 <ComboBoxItem Content="ライト" Tag="Light"/>
                                 <ComboBoxItem Content="ダーク" Tag="Dark"/>
                             </ComboBox>
-                            <ComboBox x:Name="ButtonStyleCombo" Grid.Column="2" Margin="12,0,0,0" Width="196" SelectedValuePath="Tag">
+                            <ComboBox x:Name="ButtonStyleCombo" Grid.Column="2" Margin="12,0,0,0" MinWidth="196" SelectedValuePath="Tag">
                                 <ComboBoxItem Content="縦ボタンレイアウト" Tag="Vertical"/>
                                 <ComboBoxItem Content="横ボタンレイアウト" Tag="Horizontal"/>
                                 <ComboBoxItem Content="ミックスレイアウト" Tag="Mix"/>
@@ -209,7 +210,7 @@
                                     TickFrequency="100" IsSnapToTickEnabled="True" SmallChange="100" LargeChange="100"
                                     VerticalAlignment="Center" ToolTip="100(細い)〜400(標準)〜700(太字)〜900(極太)。フォントによっては近い太さで表示されます"/>
                             <TextBlock Grid.Column="6" Text="{Binding Value, ElementName=WeightSlider, StringFormat=0}"
-                                       Width="34" TextAlignment="Right" Margin="6,0,0,0" VerticalAlignment="Center"/>
+                                       MinWidth="34" TextAlignment="Right" Margin="6,0,0,0" VerticalAlignment="Center"/>
                         </Grid>
                         <Grid Margin="0,0,0,6">
                             <Grid.ColumnDefinitions>
@@ -333,7 +334,8 @@
                             <TextBlock Grid.Column="3" Text="表示名" Foreground="Gray"/>
                         </Grid>
                         <Border BorderBrush="#55808080" BorderThickness="1">
-                            <ScrollViewer Height="300" VerticalScrollBarVisibility="Auto">
+                            <!-- 高さは、文字の大きさに関わらず8行ぶん見えるよう、実行時に行の高さから決める(300は、決まるまでの仮の値) -->
+                            <ScrollViewer x:Name="StationScroll" Height="300" VerticalScrollBarVisibility="Auto" IsVisibleChanged="StationScroll_VisibleChanged" Loaded="StationScroll_Loaded">
                                 <ItemsControl x:Name="StationItems">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
