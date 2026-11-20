@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="スリープ" Icon="MilookDeck.ico" Width="400" SizeToContent="Height"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True"
-        FontFamily="Yu Gothic UI, Meiryo UI">
+        FontFamily="{DynamicResource {x:Static SystemFonts.MessageFontFamilyKey}}">
     <StackPanel Margin="20,18,20,16">
         <!-- 文字の大きさ・太さは「すぐにスリープ」ボタンに合わせる -->
         <TextBlock Text="PCをスリープします" TextAlignment="Center"
