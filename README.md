@@ -35,7 +35,7 @@ Milookは Miru(見る／観る)とLookを組み合わせた造語です。
 | 項目 | 内容 |
 |---|---|
 | OS | Windows 10 / 11(x64) |
-| 実行 | .NET 9 以降のデスクトップ ランタイム(x64) |
+| 実行 | .NET 10 以降のデスクトップ ランタイム(x64) |
 | TVTest | MilookDeckBridge プラグインを使います(TVTest と同じビット数でビルドしてください) |
 | EDCB | EpgTimerSrv が動いていること(EPG データの取得と録画予定の連携に使用) |
 
@@ -56,7 +56,7 @@ MilookDeck 本体と TVTest プラグインは、名前付きパイプ(`\\.\pipe
 ### 必要なもの
 
 - Visual Studio 2026(「.NET デスクトップ開発」と「C++ によるデスクトップ開発」のワークロード)
-- .NET 9 SDK
+- .NET 10 SDK
 - TVTest プラグイン SDK のヘッダー(`Plugin\TVTestPlugin.h` 同梱していますが、更新する場合は TVTest 本体のソースから入手してください)
 
 ### 手順
