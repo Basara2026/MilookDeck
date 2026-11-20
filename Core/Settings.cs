@@ -54,7 +54,7 @@ public class Settings
         if (Buttons.Count > MaxButtons) Buttons.RemoveRange(MaxButtons, Buttons.Count - MaxButtons);
     }
 
-    public bool RunAtStartup { get; set; } = false;      // Windows のサインイン時に自動で起動する(スタートアップへの登録)。実際の状態はレジストリが正
+    public bool RunAtStartup { get; set; } = false;      // Windows のサインイン時に自動で起動する(スタートアップへの登録)。実際の状態は、スタートアップフォルダのショートカットの有無が正
     public bool TrayResident { get; set; } = false;
     public List<TunerDef> Tuners { get; set; } = TunerDef.Defaults();
     public Dictionary<string, string> StationNames { get; set; } = new();   // 局キー(nid:tsid:sid) → 表示上の局名(内部の局名は変わらない)
