@@ -145,7 +145,7 @@ public partial class MainWindow : Window
 
     static void ApplyTheme(string theme)
     {
-        // Fluent テーマ(.NET 9)。System=Windows のライト/ダーク設定に追従
+        // Fluent テーマ(.NET 9 以降)。System=Windows のライト/ダーク設定に追従
         Application.Current.ThemeMode = theme switch
         {
             "Light" => ThemeMode.Light,
