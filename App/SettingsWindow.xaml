@@ -43,6 +43,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" Grid.Column="0" Text="TVTest 実行ファイル" VerticalAlignment="Center"/>
                         <TextBox x:Name="ExeBox" Grid.Row="0" Grid.Column="1" Margin="0,2" Padding="2" LostFocus="ExeBox_LostFocus"/>
@@ -78,13 +79,36 @@
                         <TextBlock Grid.Row="12" Grid.Column="0" Text="起動オプション" Margin="16,0,0,0" VerticalAlignment="Center" Foreground="Gray"/>
                         <TextBox x:Name="Button5ArgsBox" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,2" Padding="2" ToolTip="ボタン5で起動するソフトに渡すオプション"/>
                         <TextBlock Grid.Row="13" Grid.Column="0" Text="起動ボタンを表示する" VerticalAlignment="Center" Margin="0,4,0,0"/>
-                        <StackPanel Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,4,0,0">
+                        <UniformGrid Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" Columns="5" Margin="0,4,0,0">
                             <CheckBox x:Name="ShowButton1Check" Content="ボタン1" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
-                            <CheckBox x:Name="ShowButton2Check" Content="ボタン2" Margin="16,0,0,0" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
-                            <CheckBox x:Name="ShowButton3Check" Content="ボタン3" Margin="16,0,0,0" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
-                            <CheckBox x:Name="ShowButton4Check" Content="ボタン4" Margin="16,0,0,0" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
-                            <CheckBox x:Name="ShowButton5Check" Content="ボタン5" Margin="16,0,0,0" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
-                        </StackPanel>
+                            <CheckBox x:Name="ShowButton2Check" Content="ボタン2" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                            <CheckBox x:Name="ShowButton3Check" Content="ボタン3" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                            <CheckBox x:Name="ShowButton4Check" Content="ボタン4" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                            <CheckBox x:Name="ShowButton5Check" Content="ボタン5" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                        </UniformGrid>
+                        <TextBlock Grid.Row="14" Grid.Column="0" Text="アイコンを表示する" VerticalAlignment="Top" Margin="0,4,0,0"/>
+                        <UniformGrid Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" Columns="5" Margin="0,4,0,0">
+                            <StackPanel>
+                                <CheckBox x:Name="IconP1Check1" Content="表示パターン1" Tag="0" Checked="IconPattern_Checked" ToolTip="通常は半透明(50%)、マウスを重ねると100%" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                                <CheckBox x:Name="IconP2Check1" Content="表示パターン2" Tag="0" Checked="IconPattern_Checked" ToolTip="通常は非表示、マウスを重ねると100%" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <CheckBox x:Name="IconP1Check2" Content="表示パターン1" Tag="1" Checked="IconPattern_Checked" ToolTip="通常は半透明(50%)、マウスを重ねると100%" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                                <CheckBox x:Name="IconP2Check2" Content="表示パターン2" Tag="1" Checked="IconPattern_Checked" ToolTip="通常は非表示、マウスを重ねると100%" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <CheckBox x:Name="IconP1Check3" Content="表示パターン1" Tag="2" Checked="IconPattern_Checked" ToolTip="通常は半透明(50%)、マウスを重ねると100%" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                                <CheckBox x:Name="IconP2Check3" Content="表示パターン2" Tag="2" Checked="IconPattern_Checked" ToolTip="通常は非表示、マウスを重ねると100%" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <CheckBox x:Name="IconP1Check4" Content="表示パターン1" Tag="3" Checked="IconPattern_Checked" ToolTip="通常は半透明(50%)、マウスを重ねると100%" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                                <CheckBox x:Name="IconP2Check4" Content="表示パターン2" Tag="3" Checked="IconPattern_Checked" ToolTip="通常は非表示、マウスを重ねると100%" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <CheckBox x:Name="IconP1Check5" Content="表示パターン1" Tag="4" Checked="IconPattern_Checked" ToolTip="通常は半透明(50%)、マウスを重ねると100%" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                                <CheckBox x:Name="IconP2Check5" Content="表示パターン2" Tag="4" Checked="IconPattern_Checked" ToolTip="通常は非表示、マウスを重ねると100%" FontSize="{Binding FontSize, ElementName=DetailWidthLabel}" FontWeight="{Binding FontWeight, ElementName=DetailWidthLabel}"/>
+                            </StackPanel>
+                        </UniformGrid>
                     </Grid>
                 </GroupBox>
                 <GroupBox Header="チューナー" Padding="8" Margin="0,0,0,10">
