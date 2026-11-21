@@ -3,6 +3,6 @@ namespace MilookDeck;
 public static class AppInfo
 {
     /// <summary>作成日時(JST) yyyyMMddHHmm</summary>
-    public const string Version = "202611210756";
+    public const string Version = "202611211709";
     public static string VersionText => $"MilookDeck Version {Version}";
 }
