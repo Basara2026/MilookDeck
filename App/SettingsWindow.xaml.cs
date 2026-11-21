@@ -107,6 +107,10 @@ public partial class SettingsWindow : Window
             ButtonBoxes[i].Text = s.Buttons[i].Exe;
             ArgsBoxes[i].Text = s.Buttons[i].Args;
             ShowChecks[i].IsChecked = s.Buttons[i].Show;
+            updatingIcons = true;
+            IconChecks1[i].IsChecked = s.Buttons[i].IconMode == 1;
+            IconChecks2[i].IsChecked = s.Buttons[i].IconMode == 2;
+            updatingIcons = false;
         }
 
         RefreshDrivers();
@@ -232,6 +236,20 @@ public partial class SettingsWindow : Window
 
     TextBox[] ButtonBoxes => new[] { Button1Box, Button2Box, Button3Box, Button4Box, Button5Box };
     TextBox[] ArgsBoxes => new[] { Button1ArgsBox, Button2ArgsBox, Button3ArgsBox, Button4ArgsBox, Button5ArgsBox };
+    // アイコンの表示パターン(ボタンごとに、パターン1・パターン2・どちらも選ばない=アイコンなし。同時には1つだけ)
+    CheckBox[] IconChecks1 => new[] { IconP1Check1, IconP1Check2, IconP1Check3, IconP1Check4, IconP1Check5 };
+    CheckBox[] IconChecks2 => new[] { IconP2Check1, IconP2Check2, IconP2Check3, IconP2Check4, IconP2Check5 };
+    bool updatingIcons;
+
+    void IconPattern_Checked(object sender, RoutedEventArgs e)
+    {
+        if (updatingIcons || sender is not CheckBox cb || !int.TryParse(cb.Tag as string, out var i)) return;
+        updatingIcons = true;
+        var other = ReferenceEquals(cb, IconChecks1[i]) ? IconChecks2[i] : IconChecks1[i];
+        other.IsChecked = false;
+        updatingIcons = false;
+    }
+
     CheckBox[] ShowChecks => new[] { ShowButton1Check, ShowButton2Check, ShowButton3Check, ShowButton4Check, ShowButton5Check };
 
     void BrowseButton_Click(object sender, RoutedEventArgs e)
@@ -550,6 +568,7 @@ public partial class SettingsWindow : Window
             b.Exe = ButtonBoxes[i].Text.Trim();
             b.Args = ArgsBoxes[i].Text.Trim();
             b.Show = ShowChecks[i].IsChecked == true;
+            b.IconMode = IconChecks1[i].IsChecked == true ? 1 : IconChecks2[i].IsChecked == true ? 2 : 0;
         }
         Result.Tuners = tuners.Select(t => new TunerDef { Label = t.Label.Trim(), Driver = t.Driver.Trim(), Kind = t.Kind }).ToList();
         Result.Theme = ThemeCombo.SelectedValue as string ?? "System";
