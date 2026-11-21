@@ -19,6 +19,7 @@ public class LaunchButton
     public string Exe { get; set; } = "";
     public string Args { get; set; } = "";   // 起動オプション
     public bool Show { get; set; }           // ボタンを表示するか
+    public int IconMode { get; set; }        // 実行ファイルのアイコンの表示: 0=なし / 1=通常は半透明(50%)・マウスを重ねると100% / 2=通常は非表示・マウスを重ねると100%
 }
 
 /// <summary>設定(exe と同じフォルダの MilookDeck.settings.json)。</summary>
