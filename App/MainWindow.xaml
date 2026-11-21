@@ -65,6 +65,8 @@
                     <ControlTemplate TargetType="Button">
                         <Grid>
                             <Border x:Name="Face" Background="Transparent"/>
+                            <!-- 実行ファイルのアイコン(設定でアイコンを表示するときだけ、コードで Content に入る) -->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <Image Source="BtnFrame.png" Stretch="Fill" RenderOptions.BitmapScalingMode="HighQuality"/>
                         </Grid>
                         <ControlTemplate.Triggers>
@@ -149,11 +151,11 @@
         <!-- 起動ボタン(ボタン1〜5)。横ボタンレイアウト=上部に右からボタン1,2…と横並び / 縦ボタンレイアウト=右側に上からボタン1,2…と縦並び -->
         <StackPanel x:Name="AppBtns" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal"
                     HorizontalAlignment="Right" Margin="0,0,72,0">
-            <Button x:Name="AppBtn1" Style="{StaticResource FrameBtn}" Width="44" Height="38" Margin="0,0,6,0" Tag="0" Click="AppBtn_Click"/>
-            <Button x:Name="AppBtn2" Style="{StaticResource FrameBtn}" Width="44" Height="38" Margin="0,0,6,0" Tag="1" Click="AppBtn_Click"/>
-            <Button x:Name="AppBtn3" Style="{StaticResource FrameBtn}" Width="44" Height="38" Margin="0,0,6,0" Tag="2" Click="AppBtn_Click"/>
-            <Button x:Name="AppBtn4" Style="{StaticResource FrameBtn}" Width="44" Height="38" Margin="0,0,6,0" Tag="3" Click="AppBtn_Click"/>
-            <Button x:Name="AppBtn5" Style="{StaticResource FrameBtn}" Width="44" Height="38" Margin="0,0,6,0" Tag="4" Click="AppBtn_Click"/>
+            <Button x:Name="AppBtn1" Style="{StaticResource FrameBtn}" Width="44" Height="38" Margin="0,0,6,0" Tag="0" Click="AppBtn_Click" MouseEnter="AppBtn_MouseEnter" MouseLeave="AppBtn_MouseLeave"/>
+            <Button x:Name="AppBtn2" Style="{StaticResource FrameBtn}" Width="44" Height="38" Margin="0,0,6,0" Tag="1" Click="AppBtn_Click" MouseEnter="AppBtn_MouseEnter" MouseLeave="AppBtn_MouseLeave"/>
+            <Button x:Name="AppBtn3" Style="{StaticResource FrameBtn}" Width="44" Height="38" Margin="0,0,6,0" Tag="2" Click="AppBtn_Click" MouseEnter="AppBtn_MouseEnter" MouseLeave="AppBtn_MouseLeave"/>
+            <Button x:Name="AppBtn4" Style="{StaticResource FrameBtn}" Width="44" Height="38" Margin="0,0,6,0" Tag="3" Click="AppBtn_Click" MouseEnter="AppBtn_MouseEnter" MouseLeave="AppBtn_MouseLeave"/>
+            <Button x:Name="AppBtn5" Style="{StaticResource FrameBtn}" Width="44" Height="38" Margin="0,0,6,0" Tag="4" Click="AppBtn_Click" MouseEnter="AppBtn_MouseEnter" MouseLeave="AppBtn_MouseLeave"/>
         </StackPanel>
 
         <StackPanel x:Name="WinBtns" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
