@@ -279,11 +279,13 @@ public partial class MainWindow : Window
         TextElement.SetFontWeight(StatusBorder, weight);
         StatusBorder.MinHeight = Math.Ceiling(ff.LineSpacing * cfg.FontSize) + 4;
         TunerCol.Width = new GridLength(Math.Clamp(cfg.TunerListWidth, 60, 600));
+        IconLoader.Clear();   // アイコンは、設定を適用するたびに取り出し直す
         for (int i = 0; i < AppButtons.Length && i < cfg.Buttons.Count; i++)
         {
             var def = cfg.Buttons[i];
             AppButtons[i].Visibility = def.Show ? Visibility.Visible : Visibility.Collapsed;
             AppButtons[i].ToolTip = ButtonTip(def.Exe, i + 1);
+            SetButtonIcon(i, def);
         }
         CloseTunerMenu.Header = $"{ProcName} を終了";   // 設定した実行ファイル名(.exe なし)
     }
@@ -843,6 +845,35 @@ public partial class MainWindow : Window
     // ---------- 起動ボタン(ボタン1・ボタン2) ----------
     static string ButtonTip(string exe, int n) =>
         string.IsNullOrWhiteSpace(exe) ? $"ボタン{n}(未設定)" : $"{Path.GetFileNameWithoutExtension(exe)} を起動";
+
+    readonly double[] iconBaseOpacity = new double[5];   // 起動ボタンのアイコンの、通常時の不透明度(マウスを重ねると1)
+
+    /// <summary>起動ボタンに、実行ファイルのアイコンを入れる(設定の「アイコンを表示する」のパターンに従う)。</summary>
+    void SetButtonIcon(int i, LaunchButton def)
+    {
+        var btn = AppButtons[i];
+        ImageSource? src = def.IconMode is 1 or 2 ? IconLoader.Load(def.Exe, 64) : null;
+        if (src == null) { btn.Content = null; return; }   // アイコンなし(空のボタン)
+        iconBaseOpacity[i] = def.IconMode == 1 ? 0.5 : 0.0;
+        var img = new Image
+        {
+            Source = src, Width = 26, Height = 26, Stretch = Stretch.Uniform, IsHitTestVisible = false,
+            Opacity = btn.IsMouseOver ? 1.0 : iconBaseOpacity[i],
+        };
+        RenderOptions.SetBitmapScalingMode(img, BitmapScalingMode.HighQuality);
+        btn.Content = img;
+    }
+
+    void AppBtn_MouseEnter(object sender, MouseEventArgs e)
+    {
+        if (sender is Button { Content: Image img }) img.Opacity = 1.0;
+    }
+
+    void AppBtn_MouseLeave(object sender, MouseEventArgs e)
+    {
+        if (sender is Button { Content: Image img, Tag: string t } && int.TryParse(t, out var i) && i >= 0 && i < iconBaseOpacity.Length)
+            img.Opacity = iconBaseOpacity[i];
+    }
 
     Button[] AppButtons => new[] { AppBtn1, AppBtn2, AppBtn3, AppBtn4, AppBtn5 };
 
